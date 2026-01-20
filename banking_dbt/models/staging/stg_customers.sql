@@ -1,5 +1,5 @@
 {{ config(materialized='view') }}
-
+-- Ranking CTE ( Common Table Expression ) - used for temporary purposes 
 with ranked as (
     select
         v:id::string            as customer_id,
@@ -23,4 +23,5 @@ select
     created_at,
     load_timestamp
 from ranked
+-- This ensures only the most recent record for each customer_id is selected.
 where rn = 1

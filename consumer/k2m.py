@@ -17,10 +17,10 @@ consumer = KafkaConsumer(
     'banking_server.public.accounts',
     'banking_server.public.transactions',
     bootstrap_servers=os.getenv("KAFKA_BOOTSTRAP"),
-    auto_offset_reset='earliest',
+    auto_offset_reset='earliest', # gathering all the data from the start of the stream 
     enable_auto_commit=True,
-    group_id=os.getenv("KAFKA_GROUP"),
-    value_deserializer=lambda x: json.loads(x.decode('utf-8'))
+    group_id=os.getenv("KAFKA_GROUP"), # if db / kafka stream fails , group helps us to resume the stream from the point of failure. 
+    value_deserializer=lambda x: json.loads(x.decode('utf-8')) # binary -> decode -> json -> loads -> dict 
 )
 
 # MinIO client

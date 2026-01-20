@@ -97,7 +97,7 @@ with DAG(
     dag_id="minio_to_snowflake_banking",
     default_args=default_args,
     description="Load MinIO parquet into Snowflake RAW tables",
-    schedule_interval="*/1 * * * *",
+    schedule="*/1 * * * *",
     start_date=datetime(2025, 1, 1),
     catchup=False,
 ) as dag:
